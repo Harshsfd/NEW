@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+            burger.setAttribute('aria-expanded', nav.classList.contains('nav-active'));
 
             // Animate Links with staggered fade
             navLinks.forEach((link, index) => {
@@ -17,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
                 }
             });
-
-            burger.classList.toggle('toggle');
         });
     };
 
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Close the nav menu on mobile after clicking link
                 document.querySelector('.nav-links').classList.remove('nav-active');
                 document.querySelector('.burger').classList.remove('toggle');
+                document.querySelector('.burger').setAttribute('aria-expanded', 'false');
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
 
-    // Knowledge base with extended topics for the EDUAI project
+    // Knowledge base for EDUAI AI Assistant
     const knowledgeBase = {
         "hello": "Hi! 👋 How can I assist you today with your web development learning?",
         "hi": "Hello! I am your EDU AI Assistant. Ask me anything about HTML, CSS, JavaScript, or EDUAI platform features.",
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "certification": "Earn verified certificates upon course completion to showcase your skills."
     };
 
-    // Append message to chat box
+    // Append message to chat box with given sender ('user' or 'ai')
     function appendMessage(message, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', `${sender}-message`);
@@ -94,17 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Simulate typing by gradually appending text
+    // Simulate typing effect for AI response
     function simulateTypingResponse(response) {
         let i = 0;
         const typingInterval = setInterval(() => {
+            let currentText = chatBox.querySelector('.ai-message:last-child');
+            // Create if not exist
+            if (!currentText) {
+                currentText = document.createElement('div');
+                currentText.classList.add('message', 'ai-message');
+                chatBox.appendChild(currentText);
+            }
             if (i < response.length) {
-                let currentText = chatBox.querySelector('.ai-message:last-child');
-                if (!currentText) {
-                    currentText = document.createElement('div');
-                    currentText.classList.add('message', 'ai-message');
-                    chatBox.appendChild(currentText);
-                }
                 currentText.textContent += response[i];
                 chatBox.scrollTop = chatBox.scrollHeight;
                 i++;
@@ -114,14 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 25);
     }
 
-    // Get response from local knowledge base
+    // Get appropriate AI response from knowledge base
     function getLocalResponse(query) {
         const lowerCaseQuery = query.toLowerCase().trim();
-
-        // Exact match first
+        // Exact match
         if (knowledgeBase[lowerCaseQuery]) return knowledgeBase[lowerCaseQuery];
-
-        // Keyword partial match fallback
+        // Partial keyword match
         for (const key in knowledgeBase) {
             if (lowerCaseQuery.includes(key)) {
                 return knowledgeBase[key];
@@ -130,18 +130,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return "I'm sorry, I don't have information on that topic yet. Try asking about HTML, CSS, JavaScript, or EDUAI features.";
     }
 
-    // Toggle chatbot open on icon click
+    // Toggle chatbot open on icon click and focus input
     chatIcon.addEventListener('click', () => {
-        chatContainer.style.display = 'flex';
+        chatContainer.classList.add('active');
         userInput.focus();
+    });
+
+    // Accessibility: open chatbot also on keyboard Enter/Space on icon
+    chatIcon.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            chatContainer.classList.add('active');
+            userInput.focus();
+        }
     });
 
     // Close chatbot on close button click
     closeBtn.addEventListener('click', () => {
-        chatContainer.style.display = 'none';
+        chatContainer.classList.remove('active');
     });
 
-    // Send message handler
+    // Send message handler from input
     function sendMessage() {
         const userMessage = userInput.value.trim();
         if (!userMessage) return;
@@ -159,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get AI response
         const aiResponse = getLocalResponse(userMessage);
 
-        // Simulate AI typing effect after short delay
+        // Simulate AI typing after short delay
         setTimeout(() => {
             typingDiv.textContent = '';
             simulateTypingResponse(aiResponse);
@@ -168,9 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.value = '';
     }
 
-    // Event listeners for sending messages
+    // Send button click event
     sendBtn.addEventListener('click', sendMessage);
 
+    // Press Enter to send, but allow Shift+Enter for new lines
     userInput.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
