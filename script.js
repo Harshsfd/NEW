@@ -1,59 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navSlide = () => {
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.nav-links');
-        const navLinks = document.querySelectorAll('.nav-links li');
 
-        burger.addEventListener('click', () => {
-            // Toggle Nav
-            nav.classList.toggle('nav-active');
-
-            // Animate Links
-            navLinks.forEach((link, index) => {
-                if (link.style.animation) {
-                    link.style.animation = '';
-                } else {
-                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-                }
-            });
-
-            // Burger Animation
-            burger.classList.toggle('toggle');
+    // Mobile Nav
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav-active');
+        navLinks.forEach((link,index) => {
+            link.style.animation = link.style.animation ? '' : `navLinkFade 0.5s ease forwards ${index/7 + 0.3}s`;
         });
-    };
+        burger.classList.toggle('toggle');
+    });
 
-    const loadMoreContent = () => {
-        const moreLink = document.getElementById('more-link');
-        const moreContainer = document.getElementById('more-content-container');
+    // Dynamic Learning Path Cards
+    const courses = [
+        {title:"AI & Robotics", icon:"fas fa-robot", description:"Build intelligent AI models and explore robotics."},
+        {title:"Web Development", icon:"fas fa-code", description:"HTML, CSS, JavaScript and modern web frameworks."},
+        {title:"Data Science", icon:"fas fa-brain", description:"Analyze data and gain insights from datasets."},
+        {title:"Machine Learning", icon:"fas fa-chart-line", description:"Learn ML concepts and algorithms for AI projects."},
+        {title:"UI/UX Design", icon:"fas fa-pencil-ruler", description:"Design beautiful and user-friendly interfaces."}
+    ];
+    const pathCardsContainer = document.getElementById('path-cards');
+    courses.forEach(course => {
+        const card = document.createElement('div');
+        card.classList.add('path-card');
+        card.innerHTML = `<i class="${course.icon}"></i><h3>${course.title}</h3><p>${course.description}</p>`;
+        pathCardsContainer.appendChild(card);
+    });
 
-        moreLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Check if content is already loaded to avoid multiple loads
-            if (moreContainer.innerHTML.trim() === '') {
-                fetch('more.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        moreContainer.innerHTML = data;
-                        moreContainer.style.display = 'block';
-                        
-                        // Scroll to the loaded content
-                        moreContainer.scrollIntoView({ behavior: 'smooth' });
-                    })
-                    .catch(error => console.error('Error loading more.html:', error));
-            } else {
-                // If content is already there, just toggle its visibility
-                if (moreContainer.style.display === 'none' || moreContainer.style.display === '') {
-                    moreContainer.style.display = 'block';
-                    moreContainer.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    moreContainer.style.display = 'none';
-                }
-            }
-        });
-    };
+    // More Content Load
+    const moreLink = document.getElementById('more-link');
+    const moreContainer = document.getElementById('more-content-container');
+    moreLink.addEventListener('click', e => {
+        e.preventDefault();
+        if(!moreContainer.innerHTML){
+            moreContainer.innerHTML = `
+                <section class="more-section container">
+                    <h2>Advanced Features</h2>
+                    <p>Interactive courses, smart AI assistant, and responsive design.</p>
+                </section>`;
+            moreContainer.style.display = 'block';
+            moreContainer.scrollIntoView({behavior:'smooth'});
+        } else {
+            moreContainer.style.display = moreContainer.style.display==='none' ? 'block' : 'none';
+        }
+    });
 
-    // AI Assistant Logic
+    // Chatbot
     const chatIcon = document.querySelector('.chat-icon');
     const chatContainer = document.querySelector('.chat-container');
     const closeBtn = document.querySelector('.close-btn');
@@ -62,80 +55,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('send-btn');
 
     const knowledgeBase = {
-        "hello": "Hi there! How can I help you with your studies today?",
-        "hi": "Hello! I am your EDU AI Assistant. Ask me anything about HTML, CSS, or JavaScript.",
-        "what is html": "HTML stands for HyperText Markup Language. It's the standard markup language for documents designed to be displayed in a web browser.",
-        "what is css": "CSS stands for Cascading Style Sheets. It's used for styling the appearance of web pages, like colors, fonts, and layout.",
-        "what is javascript": "JavaScript is a programming language that enables interactive web pages. It's essential for creating dynamic content and web applications.",
-        "how to learn web development": "To learn web development, you should start with HTML, then move to CSS for styling, and finally learn JavaScript for interactivity.",
-        "who are you": "I am an EDU AI Assistant, a simple local bot designed to help you with basic web development questions.",
-        "thank you": "You're welcome! Happy to help.",
-        "bye": "Goodbye! Feel free to come back if you have more questions."
+        "hello":"Hi! How can I help you with web development?",
+        "hi":"Hello! Ask me anything about HTML, CSS, or JavaScript.",
+        "what is html":"HTML stands for HyperText Markup Language, used to create web pages.",
+        "what is css":"CSS stands for Cascading Style Sheets, used for styling websites.",
+        "what is javascript":"JavaScript enables interactive features on web pages.",
+        "html tags":"Some important HTML tags are &lt;div&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, &lt;h1&gt;-&lt;h6&gt;.",
+        "css properties":"Important CSS properties include color, font-size, margin, padding, display, flex, grid.",
+        "javascript functions":"Functions in JS define reusable blocks of code: function myFunc(){ ... }",
+        "how to start web development":"Start with HTML, then CSS, then JavaScript. Build projects as you learn.",
+        "who are you":"I am your EDU AI Assistant, ready to answer web development questions.",
+        "thank you":"You're welcome! Happy learning.",
+        "bye":"Goodbye! Keep coding!"
     };
 
-    function appendMessage(message, sender) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message', `${sender}-message`);
-        messageDiv.textContent = message;
-        chatBox.appendChild(messageDiv);
+    function appendMessage(message, sender){
+        const div = document.createElement('div');
+        div.classList.add('message', `${sender}-message`);
+        div.innerHTML = message;
+        chatBox.appendChild(div);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    function getLocalResponse(query) {
-        const lowerCaseQuery = query.toLowerCase().trim();
-        // Check for exact matches in the knowledge base
-        if (knowledgeBase[lowerCaseQuery]) {
-            return knowledgeBase[lowerCaseQuery];
+    function getResponse(query){
+        const q = query.toLowerCase().trim();
+        if(knowledgeBase[q]) return knowledgeBase[q];
+        for(let key in knowledgeBase){
+            if(q.includes(key)) return knowledgeBase[key];
         }
-
-        // Simple keyword-based matching for better results
-        for (const key in knowledgeBase) {
-            if (lowerCaseQuery.includes(key.toLowerCase())) {
-                return knowledgeBase[key];
-            }
-        }
-        
-        return "I'm sorry, I don't have information on that topic yet. Please try another question.";
+        return "Sorry, I don't know that yet. Try asking something else.";
     }
 
-    chatIcon.addEventListener('click', () => {
-        chatContainer.style.display = 'flex';
-    });
+    chatIcon.addEventListener('click',()=> chatContainer.style.display='flex');
+    closeBtn.addEventListener('click',()=> chatContainer.style.display='none');
 
-    closeBtn.addEventListener('click', () => {
-        chatContainer.style.display = 'none';
-    });
-
-    sendBtn.addEventListener('click', () => {
-        const userMessage = userInput.value.trim();
-        if (userMessage) {
-            appendMessage(userMessage, 'user');
-            const aiResponse = getLocalResponse(userMessage);
-            // Simulate AI typing delay
-            setTimeout(() => {
-                appendMessage(aiResponse, 'ai');
-            }, 500);
-            userInput.value = '';
+    sendBtn.addEventListener('click',()=>{
+        const msg = userInput.value.trim();
+        if(msg){
+            appendMessage(msg,'user');
+            setTimeout(()=> appendMessage(getResponse(msg),'ai'),500);
+            userInput.value='';
         }
     });
 
-    userInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            sendBtn.click();
-        }
+    userInput.addEventListener('keydown', e=>{
+        if(e.key==='Enter'){ e.preventDefault(); sendBtn.click(); }
     });
 
-    // Event listener for the contact form
+    // Contact Form
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-    }
-
-    navSlide();
-    loadMoreContent();
+    contactForm.addEventListener('submit', e=>{
+        e.preventDefault();
+        alert('Thank you! We will contact you soon.');
+        contactForm.reset();
+    });
 });
