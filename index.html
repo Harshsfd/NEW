@@ -3,116 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDUAI Learning</title>
+    <title>EDUAI Learning Pro</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <h1>EDUAI</h1>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#" id="more-link">More</a></li>
-                <li><a href="#learning-path-section">Learning Path</a></li>
-                <li><a href="#community-section">Community</a></li>
-                <li><a href="#contact-us-section">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Your AI-Powered Learning Partner</h2>
-                <p>Unlock your potential with personalized education pathways and interactive lessons.</p>
-                <a href="#" class="cta-button">Start Learning Now</a>
-            </div>
-            <div class="hero-image">
-                <img src="https://i.ibb.co/L5w2D72/ai-education-hero.png" alt="AI in Education">
-            </div>
-        </section>
-
-        <section id="learning-path-section" class="learning-path">
-            <div class="container">
-                <h2>Personalized Learning Paths</h2>
-                <div class="path-cards">
-                    <div class="path-card">
-                        <i class="fas fa-robot"></i>
-                        <h3>AI & Robotics</h3>
-                        <p>Explore the future of technology and build your own AI models.</p>
-                    </div>
-                    <div class="path-card">
-                        <i class="fas fa-code"></i>
-                        <h3>Web Development</h3>
-                        <p>Learn to build stunning websites using HTML, CSS, and JavaScript.</p>
-                    </div>
-                    <div class="path-card">
-                        <i class="fas fa-brain"></i>
-                        <h3>Data Science</h3>
-                        <p>Analyze data to find insights and make informed decisions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="community-section" class="community">
-            <div class="container">
-                <h2>Join Our Community</h2>
-                <p>Connect with learners and experts worldwide. Share knowledge and grow together.</p>
-                <a href="#" class="community-button">Join Now</a>
-            </div>
-        </section>
-
-        <section id="contact-us-section" class="contact-us">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <form id="contact-form">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-        <div id="more-content-container" class="more-content"></div>
-
-    </main>
-
-    <div class="chat-icon">
-        <i class="fas fa-robot"></i>
+<header>
+    <div class="logo"><h1>EDUAI</h1></div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" id="more-link">More</a></li>
+            <li><a href="#learning-path-section">Learning Path</a></li>
+            <li><a href="#community-section">Community</a></li>
+            <li><a href="#contact-us-section">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
     </div>
+</header>
 
-    <div class="chat-container">
-        <div class="chat-header">
-            EDU AI Assistant
-            <button class="close-btn"><i class="fas fa-times"></i></button>
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Your AI-Powered Learning Partner</h2>
+            <p>Unlock your potential with personalized education pathways and interactive lessons.</p>
+            <a href="#" class="cta-button">Start Learning Now</a>
         </div>
-        <div class="chat-box" id="chat-box">
-            <div class="message ai-message">Hello! I am your EDU AI Assistant. Ask me anything about HTML, CSS, or JavaScript.</div>
+        <div class="hero-image">
+            <img src="https://i.ibb.co/L5w2D72/ai-education-hero.png" alt="AI in Education">
         </div>
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type your question...">
-            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+    </section>
 
-    <footer>
+    <section id="learning-path-section" class="learning-path">
         <div class="container">
-            <p>&copy; 205 EDUAI. All Rights Reserved.</p>
+            <h2>Personalized Learning Paths</h2>
+            <div class="path-cards" id="path-cards"></div>
         </div>
-    </footer>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="community-section" class="community">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p>Connect with learners and experts worldwide. Share knowledge and grow together.</p>
+            <a href="#" class="community-button">Join Now</a>
+        </div>
+    </section>
+
+    <section id="contact-us-section" class="contact-us">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="more-content-container" class="more-content"></div>
+</main>
+
+<!-- Chatbot -->
+<div class="chat-icon">
+    <i class="fas fa-robot"></i>
+</div>
+
+<div class="chat-container">
+    <div class="chat-header">
+        EDU AI Assistant
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-box" id="chat-box">
+        <div class="message ai-message">Hello! I am your EDU AI Assistant. Ask me anything about web development.</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your question...">
+        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 EDUAI Pro. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
