@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EDUAI Learning Platform</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- Header -->
 <header>
     <div class="logo"><h1>EDUAI</h1></div>
     <nav>
@@ -23,51 +22,49 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div class="burger">
+    <div class="burger" tabindex="0" aria-label="Toggle navigation menu" role="button" aria-expanded="false">
         <div class="line1"></div>
         <div class="line2"></div>
         <div class="line3"></div>
     </div>
 </header>
 
-<!-- Hero Section -->
 <section id="hero" class="hero">
-    <div class="hero-content">
+    <div class="hero-content" tabindex="0">
         <h2>Learn, Explore, and Grow with AI-Powered Courses</h2>
         <p>Personalized learning paths, interactive lessons, and real-world projects to boost your career.</p>
         <a href="#courses" class="cta-button">Explore Courses</a>
     </div>
-    <div class="hero-image">
+    <div class="hero-image" tabindex="0">
         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="AI Education" />
     </div>
 </section>
 
-<!-- Courses Section -->
 <section id="courses" class="learning-path">
     <div class="container">
         <h2>Our Courses</h2>
         <div class="path-cards">
-            <div class="path-card">
+            <div class="path-card" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="AI & Robotics" />
                 <h3>AI & Robotics</h3>
                 <p>Build AI models and explore robotics applications with real projects.</p>
             </div>
-            <div class="path-card">
+            <div class="path-card" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Web Development" />
                 <h3>Web Development</h3>
                 <p>Master HTML, CSS, JavaScript, and modern frameworks to create dynamic websites.</p>
             </div>
-            <div class="path-card">
+            <div class="path-card" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=400&q=80" alt="Data Science" />
                 <h3>Data Science</h3>
                 <p>Analyze datasets, visualize trends, and extract actionable insights.</p>
             </div>
-            <div class="path-card">
+            <div class="path-card" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80" alt="Machine Learning" />
                 <h3>Machine Learning</h3>
                 <p>Learn ML algorithms and build predictive models for real-world applications.</p>
             </div>
-            <div class="path-card">
+            <div class="path-card" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=80" alt="UI/UX Design" />
                 <h3>UI/UX Design</h3>
                 <p>Design beautiful interfaces and improve user experience with hands-on projects.</p>
@@ -76,28 +73,27 @@
     </div>
 </section>
 
-<!-- Features Section -->
 <section id="features" class="features">
     <div class="container">
         <h2>Why Choose EDUAI</h2>
         <div class="feature-cards">
-            <div class="feature-card">
-                <i class="fas fa-chalkboard-teacher"></i>
+            <div class="feature-card" tabindex="0">
+                <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
                 <h3>Expert Instructors</h3>
                 <p>Learn from industry professionals with years of experience.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-laptop-code"></i>
+            <div class="feature-card" tabindex="0">
+                <i class="fas fa-laptop-code" aria-hidden="true"></i>
                 <h3>Hands-on Projects</h3>
                 <p>Apply your knowledge with real-world assignments and projects.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-certificate"></i>
+            <div class="feature-card" tabindex="0">
+                <i class="fas fa-certificate" aria-hidden="true"></i>
                 <h3>Certification</h3>
                 <p>Earn verified certificates to showcase your skills to employers.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-users"></i>
+            <div class="feature-card" tabindex="0">
+                <i class="fas fa-users" aria-hidden="true"></i>
                 <h3>Community Support</h3>
                 <p>Connect with fellow learners, mentors, and industry experts.</p>
             </div>
@@ -105,35 +101,33 @@
     </div>
 </section>
 
-<!-- Community Section -->
 <section id="community" class="community">
     <div class="container">
         <h2>Join Our Community</h2>
         <p>Share knowledge, ask questions, and collaborate with learners worldwide.</p>
-        <a href="#" class="community-button">Join Now</a>
-        <div class="community-images">
+        <a href="#" class="community-button" role="button">Join Now</a>
+        <div class="community-images" tabindex="0">
             <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="Community" />
         </div>
     </div>
 </section>
 
-<!-- Blog / Resources Section -->
 <section id="blog" class="blog">
     <div class="container">
         <h2>Latest Articles & Resources</h2>
         <div class="blog-cards">
-            <div class="blog-card">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Blog 1" />
+            <div class="blog-card" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Introduction to AI" />
                 <h3>Introduction to AI</h3>
                 <p>Get started with Artificial Intelligence and its applications in modern tech.</p>
             </div>
-            <div class="blog-card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Blog 2" />
+            <div class="blog-card" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Web Development Basics" />
                 <h3>Web Development Basics</h3>
                 <p>Learn the core of web development with HTML, CSS, and JavaScript tutorials.</p>
             </div>
-            <div class="blog-card">
-                <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=400&q=80" alt="Blog 3" />
+            <div class="blog-card" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=400&q=80" alt="Data Science Tips" />
                 <h3>Data Science Tips</h3>
                 <p>Analyze datasets and get actionable insights using Python and R.</p>
             </div>
@@ -141,41 +135,38 @@
     </div>
 </section>
 
-<!-- Contact Section -->
 <section id="contact" class="contact-us">
     <div class="container">
         <h2>Contact Us</h2>
-        <form id="contact-form">
-            <input type="text" id="name" name="name" placeholder="Your Name" required />
-            <input type="email" id="email" name="email" placeholder="Your Email" required />
-            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        <form id="contact-form" aria-label="Contact form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" />
+            <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true" />
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
             <button type="submit">Send Message</button>
         </form>
     </div>
 </section>
 
 <!-- Chatbot -->
-<div class="chat-icon"><i class="fas fa-robot"></i></div>
-<div class="chat-container">
+<div class="chat-icon" role="button" tabindex="0" aria-label="Open chat assistant"><i class="fas fa-robot"></i></div>
+<div class="chat-container" aria-live="polite" aria-atomic="true" aria-relevant="additions">
     <div class="chat-header">
         EDU AI Assistant
-        <button class="close-btn"><i class="fas fa-times"></i></button>
+        <button class="close-btn" aria-label="Close chat"><i class="fas fa-times"></i></button>
     </div>
-    <div class="chat-box" id="chat-box">
-        <div class="message ai-message">Hello! I am your EDU AI Assistant. Ask me anything about learning.</div>
-    </div>
+    <div class="chat-box" id="chat-box" tabindex="0" aria-live="polite" aria-atomic="false"></div>
     <div class="chat-input">
-        <input type="text" id="user-input" placeholder="Type your question..." />
-        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        <input type="text" id="user-input" placeholder="Type your question..." aria-label="Type your question" />
+        <button id="send-btn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
     </div>
 </div>
 
-<!-- Footer -->
 <footer>
     <div class="container">
         <p>&copy; 2025 EDUAI Learning Platform. All Rights Reserved.</p>
     </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
